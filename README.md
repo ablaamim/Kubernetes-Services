@@ -30,16 +30,20 @@ The system will support users with varying levels of expertise:
 #### 1.4 Automation & Process Optimization  
 To bridge knowledge gaps, the system integrates automated workflows via IaC, simplifying deployment and execution while improving user experience.  
 
-</p>
-<p align="center">
-<img src="https://github.com/ablaamim/Simlab/blob/main/img/Cluster_management.png" width="500">
-</p>
 
--## Implementation Plan for Secure Cloud Management  
+## Implementation Plan for Secure Cloud Management  
 
 ### High-Level Overview  
 
-This section outlines the key steps to build a secure and efficient cloud management platform with **Keycloak** for authentication and **Kubernetes** for orchestration. The focus is on **security, access control, and seamless integration** with OpenStack.  
+This section outlines the key steps to build a secure and efficient cloud management platform with **Keycloak** for authentication and **Kubernetes** for orchestration. The focus is on **security, access control, and seamless integration** with OpenStack.
+
+</p>
+<p align="center">
+<img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*E20q5eAN6RzOXEpwHtSxXw.png" width="500">
+</p>
+
+> Kubernetes authentication keycloak oidc oauth2
+
 
 ---
 
@@ -106,3 +110,51 @@ This section outlines the key steps to build a secure and efficient cloud manage
 ---
 
 By integrating **Keycloak for authentication**, **RBAC for authorization**, and **secure API & storage management**, this solution ensures a **robust, secure, and scalable cloud management system**.
+
+
+## Kubernetes Microservices Architecture
+
+</p>
+<p align="center">
+<img src="https://www.opensourceforu.com/wp-content/uploads/2018/04/Figure-2-Kubernetes-architecture.jpg" width="500">
+</p>
+
+### Introduction
+Kubernetes is a container orchestration platform that enables the efficient deployment, scaling, and management of containerized applications. It is widely used to implement microservices architecture, where applications are decomposed into smaller, independent services that communicate over the network.
+
+### Key Components
+1. **Kubernetes Master**: Acts as the brain of the cluster, managing scheduling, state, and orchestration of the workloads.
+   - API Server: Provides a RESTful interface for interacting with Kubernetes.
+   - Controller Manager: Ensures the cluster maintains its desired state.
+   - Scheduler: Assigns workloads to worker nodes based on resource availability.
+   - etcd: Stores configuration data and cluster state.
+
+2. **Worker Nodes**: The physical or virtual machines that run containerized applications.
+   - Kubelet: Manages containers on the node.
+   - Kube Proxy: Manages networking rules and load balancing.
+   - Container Runtime: Runs the container workloads (e.g., Docker, containerd).
+   - Pods: The smallest deployable units, containing one or more containers.
+
+3. **Registry**: A storage system for container images, such as Docker Hub or a private Harbor registry.
+
+4. **Networking**: Provides communication between services via Service Meshes (e.g., Istio), CNI plugins (e.g., Calico, Flannel), and Ingress controllers.
+
+5. **Storage**: Persistent volumes and Container Storage Interface (CSI) solutions to maintain stateful workloads.
+
+### Microservices Workflow in Kubernetes
+1. Developers push containerized microservices to the **Registry**.
+2. Kubernetes **Master Node** schedules these microservices onto **Worker Nodes**.
+3. Each **Worker Node** runs Pods containing microservices, exposing APIs for inter-service communication.
+4. Kubernetes networking (CNI, Service Mesh) manages service discovery, routing, and load balancing.
+5. Monitoring and logging tools track service performance, scaling resources when needed.
+
+### Benefits of Kubernetes for Microservices
+- **Scalability**: Auto-scaling allows services to handle varying loads efficiently.
+- **Fault Tolerance**: Self-healing mechanisms restart failed containers.
+- **Declarative Configuration**: Infrastructure as Code (IaC) ensures repeatability and automation.
+- **Efficient Resource Management**: Schedulers optimize workload distribution.
+- **Security & RBAC**: Role-Based Access Control (RBAC) and service mesh policies secure communications.
+
+### Conclusion
+Kubernetes provides a robust environment for running microservices, enabling organizations to build highly scalable and resilient applications. By leveraging Kubernetes features such as service discovery, automated scaling, and self-healing, businesses can efficiently manage complex distributed systems.
+
