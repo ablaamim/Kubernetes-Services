@@ -63,3 +63,19 @@ spec:
         claimName: my-app-pvc
 
 ```
+
+### Postgresql with Pvc :
+
+```
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postsql
+  namespace: dbaas-test
+spec:
+  instances: 1
+  storage:
+    size: 2Gi
+    storageClass: longhorn
+
+```

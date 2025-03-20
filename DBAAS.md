@@ -1,6 +1,8 @@
-# MySQL Operator for Kubernetes
+## GPU OPERATOR :
 
-## Introduction
+### MySQL Operator for Kubernetes :
+
+#### Introduction :
 
 The MySQL Operator for Kubernetes is an operator for managing MySQL InnoDB Cluster setups inside a Kubernetes Cluster. 
 It manages the full lifecycle with set up and maintenance that includes automating upgrades and backup.
@@ -11,17 +13,17 @@ MySQL InnoDB Cluster is a high-availability, fault-tolerant MySQL deployment; th
 
 So, with InnoDB Cluster + MySQL Operator, you “secure” (or maximize) Consistency and Partition tolerance—the “CP” corner of the CAP triangle.
 
-### Consistency :
+#### Consistency :
 
 InnoDB Cluster uses a consensus protocol (similar to Paxos/Raft). Writes must be acknowledged by a majority of replicas, which ensures that all “up” nodes remain consistent with one another.
 
-### Partition Tolerance :
+#### Partition Tolerance :
 
 If a network partition occurs, nodes in the “minority” partition lose write-privileges to prevent a split-brain scenario. The “majority” partition can continue accepting writes. This keeps data consistent across whichever nodes remain active.
 
 ## MySQL Operator for Kubernetes Installation on rancher K8S :
 
-### Using Helm
+#### Using Helm
 
 Install the Helm repository:
 
@@ -38,7 +40,7 @@ $> helm install mysql-operator mysql-operator/mysql-operator --namespace mysql-o
 
 ## MySQL InnoDB Cluster Installation
 
-### Using kubectl
+#### Using kubectl
 
 For creating a MySQL InnoDB Cluster, first create a secret with credentials for a MySQL root user used to 
 perform administrative tasks in the cluster. For example:
@@ -147,7 +149,7 @@ mycluster     PENDING   0        3           1         2m6s
 mycluster     ONLINE    3        3           1         10s
 ```
 
-### Using Helm
+#### Using Helm
 
 Create MySQL InnoDB Cluster installations using defaults or with customization. 
 Here's an example using all defaults for a cluster named `mycluster`:
@@ -168,7 +170,7 @@ $> helm install mycluster mysql-operator/mysql-innodbcluster \
         --set serverInstances=3 \
         --set routerInstances=1
 ```
-## Execute a pod :
+### Execute a pod :
 
 ```bash
 kubectl exec -it mycluster-0 -n dbaas-test -c mysql -- mysql -uroot -p
