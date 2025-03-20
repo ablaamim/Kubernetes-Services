@@ -64,7 +64,7 @@ spec:
 
 ```
 
-### Postgresql with Pvc :
+### Postgresql with PVC :
 
 ```
 apiVersion: postgresql.cnpg.io/v1
