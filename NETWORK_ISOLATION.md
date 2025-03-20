@@ -57,35 +57,41 @@ This Kubernetes NetworkPolicy is designed to isolate all pods in the namespace (
 
 ```
 apiVersion: networking.k8s.io/v1
+# Specifies the Kubernetes API version used for the NetworkPolicy resource. 
+# Here, it uses the stable "networking.k8s.io/v1" API.
+
 kind: NetworkPolicy
+# Declares that this resource is a NetworkPolicy, which is used to control network access.
+
 metadata:
   name: full-isolation
+  # The name "full-isolation" is an identifier for this policy within the namespace.
   namespace: isolated-ns
+  # The policy is applied to the "isolated-ns" namespace. Only pods in this namespace are affected.
+
 spec:
-  podSelector: {}  # Apply to all pods in the isolated-ns namespace
+  podSelector: {}
+  # An empty podSelector means that this policy applies to all pods in the "isolated-ns" namespace.
+  # If you wanted to target a specific set of pods, you'd provide label selectors here.
+
   policyTypes:
-    - Ingress  # Controls incoming traffic
-    - Egress   # Controls outgoing traffic
-  ingress:
-    - from:
-        - namespaceSelector: {}  # Allow traffic only from the same namespace
+    - Ingress
+    - Egress
+  # "policyTypes" defines the directions of traffic the policy applies to.
+  # In this case, it controls both incoming (Ingress) and outgoing (Egress) traffic.
+
+  ingress: []
+  # An empty ingress rule list means no incoming traffic is allowed to the pods.
+  # This effectively isolates the pods from any external (or even intra-namespace) connections.
+  
   egress:
     - to:
         - ipBlock:
-            cidr: 10.43.0.0/16  # Allow access to CoreDNS for DNS resolution
-      ports:
-        - protocol: UDP
-          port: 53
-        - protocol: TCP
-          port: 53
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0  # Allow outbound traffic to the internet
-      ports:
-        - protocol: TCP
-          port: 80   # Allow HTTP
-        - protocol: TCP
-          port: 443  # Allow HTTPS
+            cidr: 0.0.0.0/0
+  # The egress section specifies what outbound connections are permitted.
+  # "ipBlock" with "cidr: 0.0.0.0/0" means that all IP addresses are allowed as destinations.
+  # Because no specific ports are defined, all protocols and ports are permitted for outbound traffic.
+
 ```
 
 ### Summury :
@@ -96,3 +102,42 @@ spec:
 | **Pods in `isolated-ns` can access the internet?** | ✅ **Yes** (Only HTTP/HTTPS) |
 | **Pods in `isolated-ns` can resolve domain names?** | ✅ **Yes** (Allows CoreDNS) |
 | **Pods in `isolated-ns` can be pinged from other namespaces?** | 🚫 **No** (Blocked by `namespaceSelector: {}`) |
+
+### Test :
+
+```
+  GNU nano 5.6.1                                                                                    debian-pods.yaml                                                                                               
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debian-pod-1
+  namespace: isolated-ns
+  labels:
+    app: debian1
+spec:
+  containers:
+    - name: debian
+      image: debian
+      command: ["/bin/sh", "-c", "sleep infinity"]
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debian-pod-2
+  namespace: isolated-ns
+  labels:
+    app: debian2
+spec:
+  containers:
+    - name: debian
+      image: debian
+      command: ["/bin/sh", "-c", "sleep infinity"]
+```
+
+### 
+
+```
+$> python3 -m http.server 8080  # for instance
+$> curl http://pod-ip:8080
+```
