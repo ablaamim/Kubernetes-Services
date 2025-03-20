@@ -24,17 +24,17 @@ If the GPU Operator did not automatically create one, define a Service that targ
 apiVersion: v1
 kind: Service
 metadata:
-  name: dcgm-exporter
+  name: nvidia-dcgm-exporter
   namespace: gpu-operator
   labels:
-    app: dcgm-exporter
+    app: nvidia-dcgm-exporter
 spec:
-  selector:
-    app: dcgm-exporter
   ports:
     - name: metrics
       port: 9400
       targetPort: 9400
+  selector:
+    app: nvidia-dcgm-exporter
 ```
 
 * Apply this manifest using:
@@ -51,21 +51,19 @@ Define a ServiceMonitor so that Prometheus knows where and how to scrape the DCG
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: dcgm-exporter-monitor
-  namespace: cattle-monitoring-system 
-  labels:
-    release: rancher-monitoring
+  name: nvidia-dcgm-exporter
+  namespace: cattle-monitoring-system  # Prometheus Operator’s namespace
 spec:
   selector:
     matchLabels:
-      app: dcgm-exporter
+      app: nvidia-dcgm-exporter
   namespaceSelector:
     matchNames:
-      - <gpu-operator-namespace>
+      - gpu-operator  # Where the DCGM exporter service is deployed
   endpoints:
     - port: metrics
-      interval: 30s # CHANGE FOR VAL FOR FASTER REFRESH
-      scheme: http
+      interval: 10s
+      path: /metrics
 ```
 
 * Apply the ServiceMonitor :
