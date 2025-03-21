@@ -12,7 +12,33 @@ This project delivers an integrated cluster management system for the College of
 
 ### Technical Requirements  
 
-The system must fulfill the following requirements:  
+The system must fulfill the following requirements:
+
+#### Hardware SPECS :
+
+          +--------------+
+          | Master Node  |
+          +--------------+
+                |
+  ----------------------------------------------------
+  |         |         |         |         |         |
++---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
+|Worker 1 | |Worker 2 | |Worker 3 | |Worker 4 | |Worker 5 | |Worker 6 (GPU: RTX A2000)|
++---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
+
+TOTAL : 
+RAM SIZE : 122GB 
+CPU COUNT : 104
+GPU VRAM : 12GB
+
+MASTER : 32GB RAM, 20CPU
+WORKER 1 : 16GB, 20CPU
+WORKER 2 : 8GB, 20CPU
+WORKER 3 : 16GB, 12CPU
+WORKER 4 : 24GB, 12CPU
+WORKER 5 : 8GB, 12CPU
+WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
+
 
 #### 1.1 User Access Management  
 Managing access for multiple users across various departments is crucial to ensure security and efficiency.  
