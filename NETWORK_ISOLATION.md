@@ -127,8 +127,6 @@ spec:
           port: 80   # Allow HTTP
         - protocol: TCP
           port: 443  # Allow HTTPS
-
-
 ```
 
 ### Summury :
