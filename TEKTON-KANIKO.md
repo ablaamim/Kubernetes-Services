@@ -5,7 +5,7 @@
 curl -v -u admin:StrongPasswordHere http://10.50.29.196:30022/api/v2.0/projects/myproject
 
 # Try to push a test image manually
-docker login 10.50.29.196:30022 -u admin -p yourpassword
+docker login 10.50.29.196:30022 -u admin -p StongPasswordHere
 docker pull alpine
 docker tag alpine 10.50.29.196:30022/myproject/alpine-test
 docker push 10.50.29.196:30022/myproject/alpine-test
@@ -23,7 +23,7 @@ kubectl create secret generic harbor-credentials \
     "auths": {
       "http://10.50.29.196:30022": {
         "auth": "'$(echo -n "admin:StrongPasswordHere" | base64)'",
-        "email": "admin@example.com"
+        "email": "abdessamad.laamimi@um6p.ma"
       }
     },
     "HttpHeaders": {
