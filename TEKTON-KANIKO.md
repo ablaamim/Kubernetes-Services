@@ -18,7 +18,7 @@ docker push 10.50.29.196:30022/myproject/alpine-test
 kubectl delete secret docker-credentials --ignore-not-found
 
 # Create new secret with proper formatting
-kubectl create secret generic docker-credentials \
+kubectl create secret generic harbor-credentials \
   --from-file=config.json=<(echo '{
     "auths": {
       "http://10.50.29.196:30022": {
