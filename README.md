@@ -16,6 +16,8 @@ The system must fulfill the following requirements:
 
 #### Hardware SPECS :
 
+```
+
           +--------------+
           | Master Node  |
           +--------------+
@@ -25,6 +27,8 @@ The system must fulfill the following requirements:
 +---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
 |Worker 1 | |Worker 2 | |Worker 3 | |Worker 4 | |Worker 5 | |Worker 6 (GPU: RTX A2000)|
 +---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
+
+```
 
 TOTAL : 
 RAM SIZE : 122GB 
@@ -41,15 +45,17 @@ WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
 
 #### Services :
 
-* Prometheus/Grafana -> Monitoring.
-* DBAAS : mysql inaudb / cnpostgres.
-* Longhorn/CEPH -> PVC - Object-Storage - FILESYSTEMS.
-* Harbor Private registry.
-* Nvidia Gpu operator / gpu time slicing -> Share our workstation gpu.
-* Neuvector -> Security
-* Calico/Flannel -> Networking.
-* Kpack -> image builder.
-* Tekton/Kaniko -> image builder using only dockerfiles.
+| Feature                                | Description                                                                                                           |
+|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Prometheus/Grafana                     | A monitoring solution that collects, stores, and visualizes metrics from your infrastructure and applications.      |
+| DBAAS: mysql inaudb / cnpostgres         | Managed database services providing MySQL and PostgreSQL deployments for reliable application data storage.           |
+| Longhorn/CEPH                          | Storage platforms that offer persistent volumes, object storage, and filesystem support for Kubernetes workloads.     |
+| Harbor Private Registry                | A secure container registry for storing, managing, and scanning container images with enhanced access controls.        |
+| Nvidia GPU Operator / GPU Time Slicing | Tools to manage and share GPU resources, enabling efficient use of workstation GPUs via time slicing techniques.       |
+| Neuvector                              | A comprehensive container security platform providing runtime protection, vulnerability scanning, and threat detection. |
+| Calico/Flannel                         | Kubernetes networking solutions that facilitate pod-to-pod communication and enforce network policies across clusters. |
+| Kpack                                  | An automated image builder that leverages Cloud Native Buildpacks to transform source code into container images.      |
+| Tekton/Kaniko                          | CI/CD tools that build container images directly from Dockerfiles, integrating smoothly into Kubernetes pipelines.      |
 
 
 #### 1.1 User Access Management  
