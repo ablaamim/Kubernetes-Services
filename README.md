@@ -39,6 +39,18 @@ WORKER 4 : 24GB, 12CPU
 WORKER 5 : 8GB, 12CPU
 WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
 
+#### Services :
+
+* Prometheus/Grafana -> Monitoring.
+* DBAAS : mysql inaudb / cnpostgres.
+* Longhorn/CEPH -> PVC - Object-Storage - FILESYSTEMS.
+* Harbor Private registry.
+* Nvidia Gpu operator / gpu time slicing -> Share our workstation gpu.
+* Neuvector -> Security
+* Calico/Flannel -> Networking.
+* Kpack -> image builder.
+* Tekton/Kaniko -> image builder using only dockerfiles.
+
 
 #### 1.1 User Access Management  
 Managing access for multiple users across various departments is crucial to ensure security and efficiency.  
