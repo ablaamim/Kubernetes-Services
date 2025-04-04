@@ -1,5 +1,10 @@
 ### What is Rook?
 
+<p align="center">
+<img src="https://ksingh7.medium.com/rook-ceph-deployment-on-openshift-4-2b34dfb6a442g" width="800">
+</p>
+
+
 Rook is an open source cloud-native storage orchestrator for Kubernetes, providing the platform, framework, and support for Ceph storage to natively integrate with Kubernetes.
 
 Ceph is a distributed storage system that provides file, block and object storage and is deployed in large scale production clusters.
