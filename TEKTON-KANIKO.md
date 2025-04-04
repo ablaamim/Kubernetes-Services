@@ -184,6 +184,7 @@ spec:
 
 ### Intended MLOPS design:
 
+```
 ┌─────────────────────────────────────────────────────┐
 │        ML Developer (Kubeflow Notebook/UI)          │
 └───────────────────────────┬─────────────────────────┘
@@ -247,3 +248,4 @@ spec:
 │        Prometheus & Grafana Monitoring Stack        │
 │         (GPU, Resource, and App Monitoring)         │
 └─────────────────────────────────────────────────────┘
+```
