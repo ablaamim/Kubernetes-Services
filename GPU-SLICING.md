@@ -1,7 +1,7 @@
 ## Sharing A Nvidia GPU Between Pods In Kubernetes :
 
 <p align="center">
-<img src="https://github.com/ablaamim/SIMLAB-IAC/blob/main/images/GPU-Concurrency-Mechanisms.png" width="200">
+<img src="https://github.com/ablaamim/SIMLAB-IAC/blob/main/images/ts.png" width="200">
 </p>
 
 
