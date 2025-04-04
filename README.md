@@ -10,7 +10,7 @@ This project delivers an integrated cluster management system for the College of
 
 ---
 
-#### Hardware SPECS :
+#### Hardware SPECS:
 
 ```
 
@@ -28,27 +28,19 @@ This project delivers an integrated cluster management system for the College of
 
 ---
 
-TOTAL : 
+#### Details:
 
-RAM SIZE : 122GB 
+| Node       | RAM Size | CPU Count | GPU VRAM          |
+|------------|----------|-----------|-------------------|
+| **Master** | 32 GB    | 20        | -                 |
+| Worker 1   | 16 GB    | 20        | -                 |
+| Worker 2   | 8 GB     | 20        | -                 |
+| Worker 3   | 16 GB    | 12        | -                 |
+| Worker 4   | 24 GB    | 12        | -                 |
+| Worker 5   | 8 GB     | 12        | -                 |
+| Worker 6   | 32 GB    | 8         | RTX A2000 (12 GB) |
+| **TOTAL**  | **122 GB** | **104**   | **12 GB**          |
 
-CPU COUNT : 104
-
-GPU VRAM : 12GB
-
-MASTER : 32GB RAM, 20CPU
-
-WORKER 1 : 16GB, 20CPU
-
-WORKER 2 : 8GB, 20CPU
-
-WORKER 3 : 16GB, 12CPU
-
-WORKER 4 : 24GB, 12CPU
-
-WORKER 5 : 8GB, 12CPU
-
-WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
 
 ---
 

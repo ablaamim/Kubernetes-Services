@@ -1,5 +1,10 @@
 ## Sharing A Nvidia GPU Between Pods In Kubernetes :
 
+<p align="center">
+<img src="https://github.com/ablaamim/SIMLAB-IAC/blob/main/images/GPU-Concurrency-Mechanisms.png" width="200">
+</p>
+
+
 ## GPU time Slicing 💡
 
 NVIDIA Time Slicing in Kubernetes allows multiple pods to share a single GPU by dividing the GPU's time into slices that are allocated to different pods. This is implemented through the NVIDIA Device Plugin and Kubernetes resource allocation mechanisms.
