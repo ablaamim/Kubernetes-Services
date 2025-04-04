@@ -1,19 +1,41 @@
 ## Sharing A Nvidia GPU Between Pods In Kubernetes :
 
-[DOC](https://dev.to/thenjdevopsguy/sharing-a-nvidia-gpu-between-pods-in-kubernetes-4hp9)
+## GPU time Slicing 💡
 
-## GPU Slicing 💡
+NVIDIA Time Slicing in Kubernetes allows multiple pods to share a single GPU by dividing the GPU's time into slices that are allocated to different pods. This is implemented through the NVIDIA Device Plugin and Kubernetes resource allocation mechanisms.
+
+## Summury:
+
+| Aspect                      | NVIDIA MIG (Multi-Instance GPU)                       | GPU Time-Slicing                                |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------------|
+| **Resource Partitioning**   | Hardware-level (physical partitions)                  | Software-level (logical time-based sharing)     |
+| **Isolation Level**         | Strong isolation (dedicated memory & compute slices)  | Weak isolation (shared GPU memory & compute)    |
+| **Performance Stability**   | High, predictable performance (fixed resources)       | Variable; potential contention & overhead       |
+| **Use-Case Suitability**    | GPU-intensive, latency-sensitive workloads            | Lightweight workloads, dev/test scenarios       |
+| **Configuration Complexity**| Medium complexity (MIG profiles)                      | Higher complexity (driver & scheduler config)   |
+| **Resource Efficiency**     | Good (resources partitioned, but fixed allocations)   | Very High (maximizes GPU utilization)           |
+| **Flexibility**             | Lower (predefined MIG profiles, fixed slices)         | Higher (dynamic, workload-based GPU allocation) |
+| **Management Overhead**     | Lower (static management once configured)             | Higher (dynamic scheduling management required) |
+
+## How NVIDIA GPU Time-Slicing Works in Kubernetes:
+
+GPU Time-Slicing is a software-based method allowing multiple pods to share a single GPU by scheduling short time intervals ("slices") of GPU execution to different workloads.
+
+Instead of giving each pod exclusive GPU access, the NVIDIA GPU driver rapidly switches execution between multiple pods, effectively giving each pod the illusion of exclusive GPU access, but in reality, sharing the GPU hardware.
+
+##  Causes of NVIDIA GPU Time-Slicing Failures:
+
+| Scenario                          | Reason for Failure                            | Result / Symptoms                      |
+|-----------------------------------|-----------------------------------------------|----------------------------------------|
+| GPU-intensive workloads           | High contention for GPU resources             | Performance degradation, latency spikes|
+| Real-time, latency-critical apps  | Context switching overhead                    | Increased latency, missed deadlines    |
+| Memory-intensive workloads        | GPU memory exhaustion                         | OOM errors, crashes, unstable pods     |
+| Misconfigured GPU scheduler       | Incorrect scheduler or driver settings        | Pods not launching, unstable GPU usage |
+| Apps needing exclusive GPU access | Applications assuming dedicated GPU           | Crashes, unpredictable behavior        |
+| Driver incompatibility            | Outdated/incompatible NVIDIA drivers          | GPU instability, kernel panics         |
 
 
-When you hear “slicing”, it’s a method of taking one GPU and allowing it to be used across more than one Pod.
-
-There’s also a method called MPS, but it seems like slicing is used the most right now.
-
-The first thing you’ll do is set up a Config Map for the slicing.
-
-Once thing to point out is the replica count. Notice how the replica count currently says 4? That means four (4) Pods can use the GPU. If you bumped it up to ten, that means ten (10) Pods could share the GPU. This of course depends on the type of GPU and if the resources are available like any other piece of hardware.
-
-## configmap :
+## configuration:
 
 ```yaml
 apiVersion: v1

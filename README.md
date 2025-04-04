@@ -4,15 +4,11 @@
 <img src="https://www.exekutive.biz/rekrute/file/entrepriseLogoInfo/recruiter_id/323411" width="200">
 </p>
 
-### Abstract  
+### Abstract:
 
 This project delivers an integrated cluster management system for the College of Computing, enhancing user engagement and experience in the SIMLAB cluster. Built on Kubernetes, it enables seamless deployment of distributed systems, machine learning, big data, and batch workloads. The system embraces Infrastructure as Code (IaC) to automate infrastructure provisioning and meet diverse user needs.  
 
 ---
-
-### Technical Requirements  
-
-The system must fulfill the following requirements:
 
 #### Hardware SPECS :
 
@@ -30,20 +26,33 @@ The system must fulfill the following requirements:
 
 ```
 
+---
+
 TOTAL : 
+
 RAM SIZE : 122GB 
+
 CPU COUNT : 104
+
 GPU VRAM : 12GB
 
 MASTER : 32GB RAM, 20CPU
+
 WORKER 1 : 16GB, 20CPU
+
 WORKER 2 : 8GB, 20CPU
+
 WORKER 3 : 16GB, 12CPU
+
 WORKER 4 : 24GB, 12CPU
+
 WORKER 5 : 8GB, 12CPU
+
 WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
 
-#### Services :
+---
+
+#### Services in our cloud:
 
 | Feature                                | Description                                                                                                           |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -58,26 +67,34 @@ WORKER 6 : 32GB, 8CPU, RTX A2000:12GB VRAM
 | Tekton/Kaniko                          | CI/CD tools that build container images directly from Dockerfiles, integrating smoothly into Kubernetes pipelines.      |
 
 
-#### 1.1 User Access Management  
+### Technical Requirements:
+
+The system must fulfill the following requirements:
+
+#### 1.1 User Access Management:
+
 Managing access for multiple users across various departments is crucial to ensure security and efficiency.  
 
-#### 1.2 Computing Resource Allocation  
+#### 1.2 Computing Resource Allocation:
+
 As the SIMLAB cluster includes CPU and GPU nodes, the system must dynamically allocate resources based on task requirements without user intervention. Testing will be conducted in a controlled environment before deployment.  
 
-#### 1.3 User-Friendly Experience  
+#### 1.3 User-Friendly Experience:
+
 The system will support users with varying levels of expertise:  
 
 - **Expert Users**: Direct CLI interaction for job creation.  
 - **Intermediate Users**: Web interface with pre-configured environments.  
 - **Beginner Users**: Assisted workflow for running code and datasets effortlessly.  
 
-#### 1.4 Automation & Process Optimization  
+#### 1.4 Automation & Process Optimization:
+
 To bridge knowledge gaps, the system integrates automated workflows via IaC, simplifying deployment and execution while improving user experience.  
 
 
-## Implementation Plan for Secure Cloud Management  
+## Implementation Plan for Secure Cloud Management:  
 
-### High-Level Overview  
+### High-Level Overview:  
 
 This section outlines the key steps to build a secure and efficient cloud management platform with **Keycloak** for authentication and **Kubernetes** for orchestration. The focus is on **security, access control, and seamless integration** with OpenStack.
 
@@ -91,7 +108,7 @@ This section outlines the key steps to build a secure and efficient cloud manage
 
 ---
 
-### 1. Secure User Authentication & Authorization with Keycloak  
+### 1. Secure User Authentication & Authorization with Keycloak:  
 
 - **Authentication**: Implement **OpenID Connect (OIDC)** with **Keycloak** to enforce **secure user authentication**. Keycloak acts as the **identity provider (IdP)**, centralizing user access control.  
 - **Authorization**: Define **role-based access control (RBAC)** policies to restrict access based on user roles (e.g., admin, developer, viewer).  
@@ -99,7 +116,7 @@ This section outlines the key steps to build a secure and efficient cloud manage
 
 ---
 
-### 2. Web UI Framework  
+### 2. Web UI Framework:
 
 - Build a **ReactJS**-based web interface for interacting with OpenStack resources.  
 - Ensure **secure session management** and **token-based authentication** using **OIDC**.  

@@ -1,38 +1,51 @@
-## Verify Harbor Access Manually
+## Tekton Overview
 
-```bash
-# Test Harbor API access
-curl -v -u admin:StrongPasswordHere http://10.50.29.196:30022/api/v2.0/projects/myproject
+> Tekton is an open-source, cloud-native framework for creating Continuous Integration/Continuous Delivery (CI/CD) pipelines in Kubernetes.
+> It enables teams to define reusable pipeline components declaratively using Kubernetes-native resources, such as Custom Resource Definitions (CRDs).
 
-# Try to push a test image manually
-docker login 10.50.29.196:30022 -u admin -p StongPasswordHere
-docker pull alpine
-docker tag alpine 10.50.29.196:30022/myproject/alpine-test
-docker push 10.50.29.196:30022/myproject/alpine-test
-```
 
-## Create a New Docker Config Secret Properly
+<p align="center">
+<img src="https://baptistout.net/kub-native-ci-cd/cncf-bingo.webp1" width="200">
+</p>
 
-```bash
-# Delete existing secret if any
-kubectl delete secret docker-credentials --ignore-not-found
 
-# Create new secret with proper formatting
-kubectl create secret generic harbor-credentials \
-  --from-file=config.json=<(echo '{
-    "auths": {
-      "http://10.50.29.196:30022": {
-        "auth": "'$(echo -n "admin:StrongPasswordHere" | base64)'",
-        "email": "abdessamad.laamimi@um6p.ma"
-      }
-    },
-    "HttpHeaders": {
-      "User-Agent": "Docker-Client/19.03.12 (linux)"
-    }
-  }')
-```
+---
+
+## Example Scenarios for Tekton:
+
+* Building Docker container images from source code and pushing them to private registries.
+
+* Running unit and integration tests inside Kubernetes pods.
+
+* Deploying applications using Helm, Kustomize, or kubectl after successful builds.
+
+* Automating machine-learning model deployments into production.
+
+---
+
+✅ Complete Workflow Explained :
+
+Pipeline Triggered:
+
+Clones the repo from GitHub into a volume (shared-data).
+
+Build and Push:
+
+Kaniko builds the Docker image (simple-python-app:latest).
+
+Uses credentials from the provided Docker Secret to authenticate with the private registry.
+
+Pushes the final built image to registry at 10.50.29.196:30022.
+
+-> Result:
+
+A Docker image is built from the specified git repository and pushed automatically, all within Kubernetes, fully automated and Kubernetes-native.
+
+
 
 ## Kaniko yaml :
+
+> Kaniko is an open-source tool for building and pushing container images from within a Kubernetes cluster, without needing Docker installed. Tekton integrates Kaniko as a Task to build container images in pipelines.
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
@@ -74,6 +87,8 @@ spec:
         - name: dockerconfig
           mountPath: /workspace/dockerconfig
 ```
+
+---
 
 ## Pipeline :
 
@@ -129,9 +144,11 @@ spec:
 
 ```
 
+---
+
 ## Pipelinerun
 
-```
+```yaml
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
