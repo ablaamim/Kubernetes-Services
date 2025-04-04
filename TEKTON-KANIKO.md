@@ -5,7 +5,7 @@
 
 
 <p align="center">
-<img src="https://baptistout.net/kub-native-ci-cd/cncf-bingo.webp1" width="800">
+<img src="https://baptistout.net/kub-native-ci-cd/cncf-bingo.webp" width="800">
 </p>
 
 
