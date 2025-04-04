@@ -56,7 +56,7 @@ This project delivers an integrated cluster management system for the College of
 | Neuvector                              | A comprehensive container security platform providing runtime protection, vulnerability scanning, and threat detection. |
 | Calico/Flannel                         | Kubernetes networking solutions that facilitate pod-to-pod communication and enforce network policies across clusters. |
 | Kpack                                  | An automated image builder that leverages Cloud Native Buildpacks to transform source code into container images.      |
-| Tekton/Kaniko                          | CI/CD tools that build container images directly from Dockerfiles, integrating smoothly into Kubernetes pipelines.      |
+| Tekton/Kaniko -  FLUX/ARGOCD           | CI/CD tools that build container images directly from Dockerfiles, integrating smoothly into Kubernetes pipelines.      |
 
 
 ### Technical Requirements:

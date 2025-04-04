@@ -2,12 +2,10 @@
 
 > Tekton is an open-source, cloud-native framework for creating Continuous Integration/Continuous Delivery (CI/CD) pipelines in Kubernetes.
 > It enables teams to define reusable pipeline components declaratively using Kubernetes-native resources, such as Custom Resource Definitions (CRDs).
-
-
+ 
 <p align="center">
 <img src="https://baptistout.net/kub-native-ci-cd/cncf-bingo.webp" width="800">
 </p>
-
 
 ---
 
