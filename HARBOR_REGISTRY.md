@@ -4,6 +4,10 @@ Harbor is an open source trusted cloud native registry project that stores, sign
 
 Harbor is hosted by the Cloud Native Computing Foundation (CNCF). If you are an organization that wants to help shape the evolution of cloud native technologies, consider joining the CNCF. For details about whose involved and how Harbor plays a role, read the CNCF announcement.
 
+<p align="center">
+<img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*uNg7Q4hoFBWT2YBRR9qSyw.png" width="1200">
+</p>
+
 ## INSTALLATION:
 
 ### Custom Values File To Use http:
