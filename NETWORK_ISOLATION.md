@@ -96,39 +96,6 @@ spec:
 
 ```
 
-### Network isolation with outbout connection restrictions customized :
-
-```                                                                                 
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-only-internet
-  namespace: isolated-ns
-spec:
-  podSelector: {}  # Apply to all pods in this namespace
-  policyTypes:
-    - Ingress
-    - Egress
-  ingress: []  # Block all incoming traffic (pods can't talk to each other)
-  egress:
-    - to:
-	- ipBlock:
-            cidr: 10.43.0.0/16  # Allow access to all Kubernetes services (DNS & API)
-      ports:
-	- protocol: UDP
-          port: 53   # Allow DNS resolution
-        - protocol: TCP
-          port: 53   # Allow DNS resolution
-    - to:
-	- ipBlock:
-            cidr: 10.50.29.0/0  # Allow traffic to the internet
-      ports:
-	- protocol: TCP
-          port: 80   # Allow HTTP
-        - protocol: TCP
-          port: 443  # Allow HTTPS
-```
-
 ### Summury :
 
 | **Feature** | **Behavior** |
