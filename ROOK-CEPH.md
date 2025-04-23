@@ -61,7 +61,7 @@ spec:
 
 ## BUCKET PROVISIONING :
 
-```
+```yaml
 # my-bucket-obc.yaml
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
@@ -71,8 +71,11 @@ metadata:
 spec:
   generateBucketName: hamza-bucket
   storageClassName: rook-ceph-bucket
+```
 
-
+```bash
+kubectl get secret my-bucket-1 -n hamza-lachkar-namespace -o yaml
+kubectl get configmap my-bucket-1 -n hamza-lachkar-namespace -o yaml
 ```
 
 ✅ Test Rook-Ceph Buckets with AWS CLI
