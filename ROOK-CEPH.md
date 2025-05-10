@@ -18,7 +18,7 @@ Rook is hosted by the Cloud Native Computing Foundation (CNCF) as a graduated le
 ### How to custom install :
 
 ```bash
-git clone --single-branch --branch v1.10.13 https://github.com/rook/rook.git
+git clone --single-branch --branch v1.16.5 https://github.com/rook/rook.git
 cd rook/deploy/examples
 kubectl create -f crds.yaml -f common.yaml -f operator.yaml
 ```
@@ -56,6 +56,50 @@ spec:
     - name: gpu-worker
       devices:
       - name: "sda"
+
+```
+
+### CEPH ON LONGHORN :
+
+```yaml
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v19.2.2
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 2
+    allowMultiplePerNode: false
+    # each MON gets a 5Gi block device from Longhorn
+    volumeClaimTemplate:
+      spec:
+        storageClassName: longhorn
+        volumeMode: Block
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+  storage:
+    storageClassDeviceSets:
+    - name: osdset
+      count: 2                      # number of OSDs you want
+      portable: true                # allows volumes to move if pods reschedule
+      encrypted: false
+      volumeClaimTemplates:
+      - metadata:
+          name: data
+        spec:
+          storageClassName: longhorn
+          volumeMode: Block
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi       # size per OSD
+    onlyApplyOSDPlacement: false
 
 ```
 
