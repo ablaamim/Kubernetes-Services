@@ -136,6 +136,21 @@ spec:
 
 ```
 
+### BUCKET STORAGE CLASS :
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rook-ceph-bucket
+provisioner: rook-ceph.ceph.rook.io/bucket
+parameters:
+  objectStoreName: my-store
+  objectStoreNamespace: rook-ceph
+
+
+```
+
 ## BUCKET PROVISIONING :
 
 ```yaml
