@@ -1,0 +1,8 @@
+## INSTALL GPU OPERATOR :
+
+```bash
+helm repo add nvidia https://nvidia.github.io/gpu-operator
+helm repo update
+kubectl create ns gpu-operator
+helm install --namespace gpu-operator gpu-operator nvidia/gpu-operator
+```
