@@ -139,6 +139,7 @@ spec:
 ### BUCKET STORAGE CLASS :
 
 ```yaml
+# s3-bucket-storageclass.yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -147,8 +148,8 @@ provisioner: rook-ceph.ceph.rook.io/bucket
 parameters:
   objectStoreName: my-store
   objectStoreNamespace: rook-ceph
-
-
+  region: us-east-1
+  # optional: additional S3 options
 ```
 
 ## BUCKET PROVISIONING :
@@ -158,11 +159,12 @@ parameters:
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
-  name: my-bucket-1
-  namespace: haitham-bensaghir-namespace
+  name: my-s3-bucket
+  namespace: rook-ceph
 spec:
-  generateBucketName: hamza-bucket
+  bucketName: my-s3-bucket
   storageClassName: rook-ceph-bucket
+
 ```
 
 ```bash
