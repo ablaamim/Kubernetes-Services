@@ -71,6 +71,11 @@ spec:
   cephVersion:
     image: quay.io/ceph/ceph:v19.2.2
   dataDirHostPath: /var/lib/rook
+  # Enable the Ceph dashboard with TLS on port 8443
+  dashboard:
+    enabled: true
+    ssl: true
+    port: 8443
   mon:
     count: 2
     allowMultiplePerNode: false
@@ -79,7 +84,8 @@ spec:
       spec:
         storageClassName: longhorn
         volumeMode: Block
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteOnce
         resources:
           requests:
             storage: 5Gi
@@ -95,11 +101,13 @@ spec:
         spec:
           storageClassName: longhorn
           volumeMode: Block
-          accessModes: ["ReadWriteOnce"]
+          accessModes:
+            - ReadWriteOnce
           resources:
             requests:
               storage: 50Gi       # size per OSD
     onlyApplyOSDPlacement: false
+
 
 ```
 
