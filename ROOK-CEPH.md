@@ -111,6 +111,31 @@ spec:
 
 ```
 
+## DASHBOARD: 
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rook-ceph-mgr-dashboard-nodeport
+  namespace: rook-ceph
+  labels:
+    app: rook-ceph-mgr
+    rook_cluster: rook-ceph
+spec:
+  type: NodePort
+  selector:
+    app: rook-ceph-mgr
+    rook_cluster: rook-ceph
+  ports:
+    - name: https-dashboard
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+      nodePort: 30083    # pick any port in 30000–32767 that’s free
+
+```
+
 ## BUCKET PROVISIONING :
 
 ```yaml
