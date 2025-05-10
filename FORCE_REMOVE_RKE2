@@ -1,0 +1,80 @@
+# 🔥 Force Uninstall RKE2 (Complete Cleanup)
+
+> ⚠️ **Warning:** This process will permanently remove all RKE2 cluster data and configurations. Proceed only if you are sure.
+
+---
+
+## 1. Stop and Disable RKE2 Services
+
+```bash
+sudo systemctl stop rke2-server rke2-agent
+sudo systemctl disable rke2-server rke2-agent
+```
+
+> Use `rke2-server` for control-plane nodes and `rke2-agent` for worker nodes.
+
+---
+
+## 2. Remove RKE2 Binaries
+
+```bash
+sudo rm -f /usr/local/bin/rke2*
+sudo rm -f /usr/bin/rke2*
+```
+
+---
+
+## 3. Remove RKE2 Configuration and Data
+
+```bash
+sudo rm -rf /etc/rancher/rke2
+sudo rm -rf /var/lib/rancher/rke2
+sudo rm -rf /var/lib/kubelet
+sudo rm -rf /etc/rancher/node
+sudo rm -rf /etc/kubernetes
+```
+
+---
+
+## 4. Remove Systemd Unit Files
+
+```bash
+sudo rm -f /etc/systemd/system/rke2*.service
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+```
+
+---
+
+## 5. Remove CNI and Container Runtime Data (Optional but Recommended)
+
+```bash
+sudo rm -rf /opt/cni
+sudo rm -rf /var/lib/cni
+sudo rm -rf /var/lib/containerd
+sudo rm -rf /run/flannel
+```
+
+---
+
+## ✅ Verify Uninstallation
+
+### Check if `rke2` is still installed:
+
+```bash
+which rke2
+```
+
+Should return nothing.
+
+### Check if Kubernetes is still responding:
+
+```bash
+kubectl get nodes
+```
+
+Should return an error or no response.
+
+---
+
+> ✅ You have now fully removed RKE2 from your system.
