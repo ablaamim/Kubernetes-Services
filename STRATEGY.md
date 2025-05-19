@@ -36,4 +36,9 @@ yum install -y dnf dnf-plugins-core
 dnf update
 ```
 
-## Ansible 2.10+ on RHEL 7.6
+## Remove every Mellanox/OFED package
+
+```
+sudo dnf remove --allowerasing $(rpm -qa | grep -E 'mlnx|OFED')
+sudo rpm -e --nodeps kernel-3.10.0-862.el7.x86_64
+```
