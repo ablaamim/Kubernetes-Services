@@ -13,16 +13,22 @@ This project delivers an integrated cluster management system for the College of
 #### Hardware SPECS:
 
 ```
-
-          +--------------+
-          | Master Node  |
-          +--------------+
-                |
+                 +---------------------+
+                 |   Load Balancer     |
+                 +---------------------+
+                  /                   \
+     +--------------+             +--------------+
+     |  Master 1    |             |  Master 2    |
+     +--------------+             +--------------+
+                  \                   /
+                   +-----------------+
+                          |
   ----------------------------------------------------
-  |         |         |         |         |         |
-+---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
-|Worker 1 | |Worker 2 | |Worker 3 | |Worker 4 | |Worker 5 | |Worker 6 (GPU: RTX A2000)|
-+---------+ +---------+ +---------+ +---------+ +---------+ +-------------------------+
+  |         |         |         |         |
++---------+ +---------+ +---------+ +---------+ +-------------------------+
+| Worker1 | | Worker2 | | Worker3 | | Worker4 | | Worker5 (GPU: RTX A2000) |
++---------+ +---------+ +---------+ +---------+ +-------------------------+
+
 
 ```
 
@@ -54,7 +60,7 @@ This project delivers an integrated cluster management system for the College of
 | Harbor Private Registry                | A secure container registry for storing, managing, and scanning container images with enhanced access controls.        |
 | Nvidia GPU Operator / GPU Time Slicing | Tools to manage and share GPU resources, enabling efficient use of workstation GPUs via time slicing techniques.       |
 | Neuvector                              | A comprehensive container security platform providing runtime protection, vulnerability scanning, and threat detection. |
-| Calico/Flannel                         | Kubernetes networking solutions that facilitate pod-to-pod communication and enforce network policies across clusters. |
+| Calico/Multus                          | Kubernetes networking solutions that facilitate pod-to-pod communication and enforce network policies across clusters. |
 | Kpack                                  | An automated image builder that leverages Cloud Native Buildpacks to transform source code into container images.      |
 | Tekton/Kaniko -  FLUX/ARGOCD           | CI/CD tools that build container images directly from Dockerfiles, integrating smoothly into Kubernetes pipelines.      |
 
